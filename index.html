@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS6.302 SSD Monsoon 2025</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary-color: #ec4899;
+            --accent-color: #10b981;
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+            --glass-bg: rgba(30, 41, 59, 0.8);
+            --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero h3 {
+            font-size: 1.25rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-2);
+            border-radius: 2px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 15px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+        }
+
+        .modern-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .modern-table th,
+        .modern-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modern-table th {
+            background: var(--bg-tertiary);
+            font-weight: 600;
+            color: var(--primary-color);
+            position: sticky;
+            top: 0;
+        }
+
+        .modern-table tr {
+            transition: all 0.3s ease;
+        }
+
+        .modern-table tr:hover {
+            background: rgba(99, 102, 241, 0.1);
+            transform: scale(1.01);
+        }
+
+        .modern-table tr.completed {
+            opacity: 0.6;
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .modern-table tr.completed td {
+            text-decoration: line-through;
+        }
+
+        /* Buttons and Links */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-dark);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        .link-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            margin: 0.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .link-badge:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Statistics Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+        }
+
+        .stat-card:nth-child(2)::before {
+            background: var(--gradient-2);
+        }
+
+        .stat-card:nth-child(3)::before {
+            background: var(--gradient-3);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        /* Grade Distribution Visual */
+        .grade-visual {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .grade-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .grade-item:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-color);
+        }
+
+        .grade-percentage {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .grade-type {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Staff Cards */
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .staff-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .staff-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .staff-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Current Time Display */
+        .time-display {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            z-index: 999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="bg-animation"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <strong>CS6.302 SSD</strong>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="#schedule"><i class="fas fa-calendar"></i> Lectures</a></li>
+                <li><a href="#lab"><i class="fas fa-laptop-code"></i> Labs</a></li>
+                <li><a href="#exams"><i class="fas fa-graduation-cap"></i> Exams</a></li>
+                <li><a href="#staff"><i class="fas fa-users"></i> Staff</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Time Display -->
+    <div class="time-display" id="timeDisplay">
+        <i class="fas fa-clock"></i>
+        <span id="currentTime"></span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Software System Development</h1>
+            <h2>Software Engineering Research Center, IIIT Hyderabad</h2>
+            <h3>Monsoon 2025</h3>
+
+            <!-- Course Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">29</span>
+                    <div class="stat-label">Lectures</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">15</span>
+                    <div class="stat-label">Lab Sessions</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100+</span>
+                    <div class="stat-label">Students</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- About Section -->
+        <section id="about" class="section fade-in">
+            <h2 class="section-title">About the Course</h2>
+            <div class="card">
+                <p>Software System Development is a graduate-level course that equips students with a comprehensive
+                    understanding of the principles, tools, and practices involved in designing and building modern
+                    software systems. Emphasizing a systems-oriented perspective, the course explores foundational and
+                    contemporary topics including Operating Systems, Computer Networks, Software Engineering
+                    methodologies, and Database Systems (both relational and NoSQL).</p>
+                <br>
+                <p>Students will gain practical experience with industry-relevant tools and technologies such as Bash
+                    scripting, SQL, NoSQL databases, HTML, CSS, JavaScript, front-end frameworks, RESTful APIs, Python,
+                    and Flask. The course focuses on building scalable, maintainable, and secure software systems while
+                    fostering an appreciation for system integration, version control, development workflows, and
+                    deployment strategies.</p>
+                <br>
+                <p>Designed for students with a fundamental background in programming, this course bridges theory and
+                    practice, preparing them to contribute effectively to complex software development projects in both
+                    research and industry settings.</p>
+            </div>
+        </section>
+
+        <!-- Schedule Information -->
+        <section class="section fade-in">
+            <h2 class="section-title">Schedule & Hours</h2>
+            <div class="card">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-chalkboard-teacher"
+                            style="font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                        <div class="stat-label"><strong>Lectures</strong></div>
+                        <div style="margin-top: 0.5rem; color: var(--text-secondary);">8:30 AM - 9:55 AM<br>Tuesdays &
+                            Fridays<br>Hall: H-205</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-laptop-code"
+                            style="font-size: 2rem; color: var(--secondary-color); margin-bottom: 1rem;"></i>
+                        <div class="stat-label"><strong>Lab Sessions</strong></div>
+                        <div style="margin-top: 0.5rem; color: var(--text-secondary);">2:00 PM - 5:00
+                            PM<br>Fridays<br>Hall: SH1</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-user-tie"
+                            style="font-size: 2rem; color: var(--accent-color); margin-bottom: 1rem;"></i>
+                        <div class="stat-label"><strong>Office Hours</strong></div>
+                        <div style="margin-top: 0.5rem; color: var(--text-secondary);">15 min before each class<br>or
+                            email instructor</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Policy -->
+        <section class="section fade-in">
+            <h2 class="section-title">Course Policy</h2>
+            <div class="card">
+                <h3 style="color: var(--accent-color); margin-bottom: 1rem;"> Teaching Methodology</h3>
+                <p>This course is designed to help learners understand principles behind good software system
+                    development through real-life problem-solving.</p>
+                <a href="https://tinted-rumba-8c6.notion.site/CS6-302-Software-System-Development-670da706e9514d7f9d5b1bcf3c6a1005"
+                    target="_blank" class="link-badge">Course Notes</a>
+
+                <h3 style="color: var(--accent-color); margin: 2rem 0 1rem 0;">Key Policies</h3>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+                        <i class="fas fa-shield-alt" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
+                        <div><strong>Academic Honesty:</strong> Zero tolerance for plagiarism. Help others learn, don't
+                            do the work for them.</div>
+                    </li>
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+                        <i class="fas fa-clock" style="color: var(--secondary-color); margin-top: 0.25rem;"></i>
+                        <div><strong>Attendance:</strong> Mandatory for all lectures and labs. No makeup classes for
+                            missed activities.</div>
+                    </li>
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+                        <i class="fas fa-robot" style="color: var(--accent-color); margin-top: 0.25rem;"></i>
+                        <div><strong>AI Tools:</strong> Free to use ChatGPT, Copilot, etc. Just mention what and how you
+                            used them.</div>
+                    </li>
+                    <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 0.5rem;">
+                        <i class="fas fa-calendar-times" style="color: var(--primary-color); margin-top: 0.25rem;"></i>
+                        <div><strong>Deadlines:</strong> NO extensions for 100+ enrolled students. Submit early to avoid
+                            last-minute issues.</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Grading Distribution -->
+        <section class="section fade-in">
+            <h2 class="section-title">Grading Distribution</h2>
+            <div class="grade-visual">
+                <div class="grade-item">
+                    <div class="grade-percentage">15%</div>
+                    <div class="grade-type">Assignments (4)</div>
+                </div>
+                <div class="grade-item">
+                    <div class="grade-percentage">15%</div>
+                    <div class="grade-type">Lab Activities (14)</div>
+                </div>
+                <div class="grade-item">
+                    <div class="grade-percentage">10%</div>
+                    <div class="grade-type">Practice & Class Activities (5)</div>
+                </div>
+                <div class="grade-item">
+                    <div class="grade-percentage">10%</div>
+                    <div class="grade-type">Quizzes (2)</div>
+                </div>
+                <div class="grade-item">
+                    <div class="grade-percentage">10%</div>
+                    <div class="grade-type">Mid Exam (1)</div>
+                </div>
+                <div class="grade-item">
+                    <div class="grade-percentage">40%</div>
+                    <div class="grade-type">Final Project</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lecture Schedule -->
+        <section id="schedule" class="section fade-in">
+            <h2 class="section-title">Lecture Schedule</h2>
+            <div class="table-container">
+                <table class="modern-table">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-hashtag"></i> S.No</th>
+                            <th><i class="fas fa-calendar-alt"></i> Schedule</th>
+                            <th><i class="fas fa-book"></i> Lecture Content</th>
+                            <th><i class="fas fa-download"></i> Material</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="completed">
+                            <td>1</td>
+                            <td>01-Aug-25 (Friday)</td>
+                            <td>Course Intro - Software Systems</td>
+                            <td>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/SSD_Monsoon2025.pdf"
+                                    target="_blank" class="link-badge">Slides</a>
+                                <a href="https://tinted-rumba-8c6.notion.site/Software-System-2456a6248bf68034bc14cfc44dc93062"
+                                    target="_blank" class="link-badge">Notes</a>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>2</td>
+                            <td>05-Aug-25 (Tuesday)</td>
+                            <td>Relational Data</td>
+                            <td>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/data.pdf"
+                                    target="_blank" class="link-badge">Slides</a>
+                                <a href="https://tinted-rumba-8c6.notion.site/Structured-Databases-2456a6248bf6805f83e1cbf0a58761ec"
+                                    target="_blank" class="link-badge">Notes</a>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>3</td>
+                            <td>08-Aug-25 (Friday)</td>
+                            <td>Unstructured Data - Session 1</td>
+                            <td>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/NoSQLClass.pdf"
+                                    target="_blank" class="link-badge">Slides</a>
+                                <a href="https://tinted-rumba-8c6.notion.site/Unstructured-Databases-24b6a6248bf680679b36e76c33d301c4"
+                                    target="_blank" class="link-badge">Notes</a>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>4</td>
+                            <td>12-Aug-25 (Tuesday)</td>
+                            <td><s>Unstructured Data - Session 2</s> [Cancelled - Rain â›ˆï¸]</td>
+
+                            <td>
+                                <a href="
+                                    https://tinted-rumba-8c6.notion.site/Unstructured-Databases-24b6a6248bf680679b36e76c33d301c4"
+                                    target="_blank" class="link-badge">Notes</a>
+                                <a href="https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/ISS_Spring_2025/mongo.txt"
+                                    target="_blank" class="link-badge">Scripts</a>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>5</td>
+                            <td>19-Aug-25 (Tuesday)</td>
+                            <td>Unstructured Data - Session 2</td>
+                            <td>
+                                <a href="https://tinted-rumba-8c6.notion.site/Worked-out-Examples-2546a6248bf68073a460cbfc52825dfd"
+                                    target="_blank" class="link-badge">Practice</a>
+                                <a href="https://tinted-rumba-8c6.notion.site/Some-Concepts-2546a6248bf6806fafd0d8260507fc03?pvs=73"
+                                    target="_blank" class="link-badge">Notes</a>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>6</td>
+                            <td>22-Aug-25 (Friday)</td>
+                            <td>Web - HTML</td>
+                            <td>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/Web.pdf"
+                                    target="_blank" class="link-badge">Web-Slides</a>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/HTML.pdf"
+                                    target="_blank" class="link-badge">HTML-Slides</a>
+                                <a href="https://tinted-rumba-8c6.notion.site/Web-Technology-2566a6248bf6800488d0c13a992502e4?pvs=143"
+                                    target="_blank" class="link-badge">Notes</a>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/html_super_demo_single_file_html.html"
+                                    target="_blank" class="link-badge">Scripts</a>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>7</td>
+                            <td>26-Aug-25 (Tuesday)</td>
+                            <td>Web - CSS</td>
+                            <td>
+                                <a href="https://tinted-rumba-8c6.notion.site/CSS-2566a6248bf680dc8299c320f04a5141?pvs=74"
+                                    target="_blank" class="link-badge">Notes</a>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/css_super_demo_single_file_html.html"
+                                    target="_blank" class="link-badge">Scripts</a>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>8</td>
+                            <td>29-Aug-25 (Friday)</td>
+                            <td>JavaScript - Session 1</td>
+                            <td>
+                                <a href="https://github.com/sai11101989/sai11101989.github.io/tree/main/Course/SSD_Monsoon2025/JS1"
+                                    target="_blank" class="link-badge">Scripts</a>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/ISS_Spring_2025/6_Class6_JavaScript.pdf"
+                                    target="_blank" class="link-badge">Slides</a>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>9</td>
+                            <td>02-Sep-25 (Tuesday)</td>
+                            <td>JavaScript Session 2</td>
+                            <td>
+                                <a href="https://github.com/sai11101989/sai11101989.github.io/tree/main/Course/SSD_Monsoon2025/JS2"
+                                    target="_blank" class="link-badge">Scripts</a>
+                                <a href="https://tinted-rumba-8c6.notion.site/JavaScript-2606a6248bf680138283f6419bd87777"
+                                    target="_blank" class="link-badge">Notes</a>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>10</td>
+                            <td>04-Sep-25 (Thursday)</td>
+                            <td><s>JavaScript Session 3</s> [Cancelled - Instructor Sick ðŸ¤’]</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Scripts</span>
+                                <span class="link-badge" style="opacity: 0.5;">Notes</span>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>11</td>
+                            <td>9-Sep-25 (Tuesday)</td>
+                            <td>JavaScript Session 3</td>
+                            <td>
+                                <a href="https://tinted-rumba-8c6.notion.site/Data-Structures-2686a6248bf680098b38d12626ad1012?pvs=74"
+                                    target="_blank" class="link-badge">Notes</a>
+                                <a href="https://github.com/sai11101989/sai11101989.github.io/tree/main/Course/SSD_Monsoon2025/JS3"
+                                    target="_blank" class="link-badge">Scripts</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>12-Sep-25 (Friday)</td>
+                            <td>React JS</td>
+                            <td>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/ReactJS_2025.pdf"
+                                    target="_blank" class="link-badge">Slides</a>
+                                <a href="https://www.notion.so/Asynchronous-JavaScript-26b6a6248bf68016971dd3bde3b89015"
+                                    target="_blank" class="link-badge">Notes</a>
+                                <a href="https://github.com/sai11101989/sai11101989.github.io/tree/main/Course/SSD_Monsoon2025/JS4"
+                                    target="_blank" class="link-badge">Scripts</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>26-Sep-25 (Friday)</td>
+                            <td>System Design - Session 1</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Notes</span>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>26-Sep-25 (Friday) @ 3PM-5PM</td>
+                            <td>System Design - Session 2</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Notes</span>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>30-Sep-25 (Tuesday)</td>
+                            <td>SHELL - Session 1</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Notes</span>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>03-Oct-25 (Friday)</td>
+                            <td>SHELL - Session 2</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Notes</span>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>07-Oct-25 (Tuesday)</td>
+                            <td>Python - Session 1</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Notes</span>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>10-Oct-25 (Friday)</td>
+                            <td>Python - Session 2</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Notes</span>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td>14-Oct-25 (Tuesday)</td>
+                            <td>Python - Session 3</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Notes</span>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>17-Oct-25 (Friday)</td>
+                            <td>Python - Session 4</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Notes</span>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td>24-Oct-25 (Friday)</td>
+                            <td>Python - Session 5</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Notes</span>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>22</td>
+                            <td>28-Oct-25 (Tuesday)</td>
+                            <td>Python - Session 6</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Notes</span>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>23</td>
+                            <td>31-Oct-25 (Friday)</td>
+                            <td>Python - Session 7</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Notes</span>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>24</td>
+                            <td>07-Nov-25 (Friday)</td>
+                            <td>Python - Session 8</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Notes</span>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>25</td>
+                            <td>11-Nov-25 (Tuesday)</td>
+                            <td>Python - Session 9</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Notes</span>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>26</td>
+                            <td>14-Nov-25 (Friday)</td>
+                            <td>Python - Session 10</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Notes</span>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>27</td>
+                            <td>18-Nov-25 (Tuesday)</td>
+                            <td>Retrospection</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Notes</span>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Lab Schedule -->
+        <section id="lab" class="section fade-in">
+            <h2 class="section-title">Lab Schedule</h2>
+            <div class="table-container">
+                <table class="modern-table">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-flask"></i> Lab No.</th>
+                            <th><i class="fas fa-calendar-alt"></i> Schedule</th>
+                            <th><i class="fas fa-laptop-code"></i> Topic</th>
+                            <th><i class="fas fa-file-alt"></i> Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="completed">
+                            <td>01</td>
+                            <td>7-Aug-2025 (Friday)</td>
+                            <td>Git Session</td>
+                            <td>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/Labs/Lab01/SSD%20Tutorial%20%20-%20GIT.pdf"
+                                    target="_blank" class="link-badge">Slides</a>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/Labs/Lab01/SSD_GIT_LAB.pdf"
+                                    target="_blank" class="link-badge">Activity</a>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>02</td>
+                            <td>14-Aug-2025 (Thursday) @ 2PM-3PM</td>
+                            <td>SQL Session</td>
+                            <td>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/Labs/Lab01/Lab-2.pdf"
+                                    target="_blank" class="link-badge">Slides</a>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/Labs/Lab01/Activity%20-%20Lab%202.pdf"
+                                    target="_blank" class="link-badge">Activity</a>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>03</td>
+                            <td>21-Aug-2025 (Thursday) @ 2PM-3PM</td>
+                            <td>NoSQL Session</td>
+                            <td>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/Labs/Lab01/NoSQL%20Lab3.pdf"
+                                    target="_blank" class="link-badge">Slides</a>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/Labs/Lab01/Activity_lab3.pdf"
+                                    target="_blank" class="link-badge">Activity</a>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/Labs/Lab01/NoSQL_Illustration.pdf"
+                                    target="_blank" class="link-badge">Example</a>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>04</td>
+                            <td>28-Aug-2025 (Thursday) @ 2PM-3PM</td>
+                            <td>DOM</td>
+                            <td>
+                                <a href="https://github.com/sai11101989/sai11101989.github.io/tree/main/Course/SSD_Monsoon2025/DOM"
+                                    target="_blank" class="link-badge">Slides & Activity</a>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>05</td>
+                            <td>04-Sept-2025 (Friday) @ 2PM-5PM</td>
+                            <td>JS Session</td>
+                            <td>
+                                <a href="https://github.com/sai11101989/sai11101989.github.io/tree/main/Course/SSD_Monsoon2025/JSLab"
+                                    target="_blank" class="link-badge">Slides & Activity</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>06</td>
+                            <td>18-Sept-2025 (Thursday) @ 2PM-3PM</td>
+                            <td>REST API</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                                <span class="link-badge" style="opacity: 0.5;">Activity</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>07</td>
+                            <td>16-Sept-2025 (Friday) @ 8:30AM-9:55AM (H205)</td>
+                            <td>MERN Session - NodeJS</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                                <span class="link-badge" style="opacity: 0.5;">Activity</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>08</td>
+                            <td>19-Sept-2025 (Friday) @ 8:30AM-9:55AM (H205)</td>
+                            <td>MERN App - Session 2</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                                <span class="link-badge" style="opacity: 0.5;">Activity</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>09</td>
+                            <td>20-Sept-2025 (Saturday) @ 2PM-5PM</td>
+                            <td>MERN App - Session 3</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                                <span class="link-badge" style="opacity: 0.5;">Activity</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>3-Oct-2025 (Friday)</td>
+                            <td>SHELL Session 1</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                                <span class="link-badge" style="opacity: 0.5;">Activity</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>9-Oct-2025 (Thursday) @ 2PM-3PM</td>
+                            <td>SHELL Session 2</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                                <span class="link-badge" style="opacity: 0.5;">Activity</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>10-Oct-2025 (Friday) @ 2PM-5PM</td>
+                            <td>Python Session 1</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                                <span class="link-badge" style="opacity: 0.5;">Activity</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>17-Oct-2025 (Friday) @ 2PM-5PM</td>
+                            <td>Python Session 2</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                                <span class="link-badge" style="opacity: 0.5;">Activity</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>24-Oct-2025 (Friday) @ 2PM-5PM</td>
+                            <td>Python Session 3</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                                <span class="link-badge" style="opacity: 0.5;">Activity</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>7-Nov-2025 (Friday) @ 2PM-5PM</td>
+                            <td>FASTAPI-Session 1</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                                <span class="link-badge" style="opacity: 0.5;">Activity</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>14-Nov-2025 (Friday) @ 2PM-5PM</td>
+                            <td>FASTAPI-Session 2</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Slides</span>
+                                <span class="link-badge" style="opacity: 0.5;">Activity</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Exams Section -->
+        <section id="exams" class="section fade-in">
+            <h2 class="section-title">Exams & Assignments</h2>
+            <div class="table-container">
+                <table class="modern-table">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-hashtag"></i> S.No</th>
+                            <th><i class="fas fa-graduation-cap"></i> Exam Type</th>
+                            <th><i class="fas fa-bell"></i> Announcement</th>
+                            <th><i class="fas fa-calendar-check"></i> Submission Due</th>
+                            <th><i class="fas fa-file-pdf"></i> Material</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="completed">
+                            <td>1</td>
+                            <td>Assignment - SQL, NoSQL</td>
+                            <td>15-Aug-2025</td>
+                            <td>5-Sept-2025</td>
+                            <td>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/Assignment_1.pdf"
+                                    target="_blank" class="link-badge">Paper</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Assignment - Web</td>
+                            <td>6-Sept-2025</td>
+                            <td>27-Sept-2025</td>
+                            <td>
+                                <a href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/sai11101989/sai11101989.github.io/main/Course/SSD_Monsoon2025/Assignment_2.pdf"
+                                    target="_blank" class="link-badge">Paper</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Assignment - SHELL</td>
+                            <td>28-Sept-2025</td>
+                            <td>19-Oct-2025</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Paper</span>
+                                <span class="link-badge" style="opacity: 0.5;">Key</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Assignment - Python</td>
+                            <td>20-Oct-2025</td>
+                            <td>10-Nov-2025</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Paper</span>
+                                <span class="link-badge" style="opacity: 0.5;">Key</span>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>5</td>
+                            <td>SQL Practice</td>
+                            <td>5-Aug-2025</td>
+                            <td>10-Aug-2025</td>
+                            <td>
+                                <a href="https://tinted-rumba-8c6.notion.site/Worked-out-Examples-2456a6248bf6800fa6cfc3e688a58ddd"
+                                    target="_blank" class="link-badge">Paper</a>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>6</td>
+                            <td>HTML & CSS Practice</td>
+                            <td>15-Aug-2025</td>
+                            <td>21-Aug-2025</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Paper</span>
+                                <span class="link-badge" style="opacity: 0.5;">Key</span>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>7</td>
+                            <td>QUIZ 1</td>
+                            <td>29-Aug-2025 2:30 PM</td>
+                            <td>29-Aug-2025 3:30 PM</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Paper</span>
+                                <span class="link-badge" style="opacity: 0.5;">Key</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>QUIZ 2</td>
+                            <td>31-Oct-2025 2:30 PM</td>
+                            <td>31-Oct-2025 3:30 PM</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Paper</span>
+                                <span class="link-badge" style="opacity: 0.5;">Key</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>MID Exam</td>
+                            <td>TBA</td>
+                            <td>TBA</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Paper</span>
+                                <span class="link-badge" style="opacity: 0.5;">Key</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Final Project</td>
+                            <td>1-Sept-2025</td>
+                            <td>2-Dec-2025</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Paper</span>
+                                <span class="link-badge" style="opacity: 0.5;">Key</span>
+                            </td>
+                        </tr>
+                        <tr class="completed">
+                            <td>11</td>
+                            <td>Class Activity - Profile Page</td>
+                            <td>26-Aug-2025</td>
+                            <td>26-Aug-2025</td>
+                            <td>
+                                <a href="https://forms.office.com/r/6kpKVY0eqP" target="_blank"
+                                    class="link-badge">Submission</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>Class Activity - JavaScript</td>
+                            <td>9-Sept-2025</td>
+                            <td>9-Sept-2025</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Paper</span>
+                                <span class="link-badge" style="opacity: 0.5;">Key</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>Class Activity - SHELL</td>
+                            <td>10-Oct-2025</td>
+                            <td>10-Oct-2025</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Paper</span>
+                                <span class="link-badge" style="opacity: 0.5;">Key</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>Class Activity - Python</td>
+                            <td>14-Nov-2025</td>
+                            <td>14-Nov-2025</td>
+                            <td>
+                                <span class="link-badge" style="opacity: 0.5;">Paper</span>
+                                <span class="link-badge" style="opacity: 0.5;">Key</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Staff Section -->
+        <section id="staff" class="section fade-in">
+            <h2 class="section-title">Staff</h2>
+            <div class="staff-grid">
+                <div class="staff-card">
+                    <div class="staff-title">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        Instructors
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                            <i class="fas fa-user" style="color: var(--primary-color);"></i>
+                            <a href="https://sites.google.com/view/abhishek-singh/home" target="_blank"
+                                style="color: var(--text-primary); text-decoration: none;">
+                                Dr. Abhishek Singh
+                            </a>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-user" style="color: var(--primary-color);"></i>
+                            <a href="https://sai11101989.github.io" target="_blank"
+                                style="color: var(--text-primary); text-decoration: none;">
+                                Dr. Sai Anirudh Karre
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="staff-card">
+                    <div class="staff-title">
+                        <i class="fas fa-users"></i>
+                        Teaching Assistants
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-user-graduate"
+                                style="color: var(--secondary-color); font-size: 0.8rem;"></i>
+                            <span style="font-size: 0.9rem;">Chirag Dhamija</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-user-graduate"
+                                style="color: var(--secondary-color); font-size: 0.8rem;"></i>
+                            <span style="font-size: 0.9rem;">Tejas Cavale</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-user-graduate"
+                                style="color: var(--secondary-color); font-size: 0.8rem;"></i>
+                            <span style="font-size: 0.9rem;">Divyansh Pandey</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-user-graduate"
+                                style="color: var(--secondary-color); font-size: 0.8rem;"></i>
+                            <span style="font-size: 0.9rem;">Aaditya Vardhan Narain</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-user-graduate"
+                                style="color: var(--secondary-color); font-size: 0.8rem;"></i>
+                            <span style="font-size: 0.9rem;">Kunal Kamalkishire Bhosikar</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-user-graduate"
+                                style="color: var(--secondary-color); font-size: 0.8rem;"></i>
+                            <span style="font-size: 0.9rem;">Chandrasekar S</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-user-graduate"
+                                style="color: var(--secondary-color); font-size: 0.8rem;"></i>
+                            <span style="font-size: 0.9rem;">Ashwani Raj</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fas fa-user-graduate"
+                                style="color: var(--secondary-color); font-size: 0.8rem;"></i>
+                            <span style="font-size: 0.9rem;">Hiya Bhatt</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Important Links Section -->
+        <section class="section fade-in">
+            <h2 class="section-title">Important Links</h2>
+            <div class="card">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <a href="https://intranet.iiit.ac.in/offices/static/files/Almanac_M25_Final-Ver2.1.pdf"
+                        target="_blank" class="link-badge"
+                        style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem;">
+                        <i class="fas fa-calendar-alt"></i>
+                        Monsoon 2025 Almanac
+                    </a>
+                    <a href="https://intranet.iiit.ac.in/offices/static/files/Lecture%20timetable%20for%20Monsoon_2025_V1.2.pdf"
+                        target="_blank" class="link-badge"
+                        style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem;">
+                        <i class="fas fa-clock"></i>
+                        Lecture Timetable
+                    </a>
+                    <a href="https://intranet.iiit.ac.in/offices/static/files/Tutorials%26LAB_Schedule_M25-V2.pdf"
+                        target="_blank" class="link-badge"
+                        style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem;">
+                        <i class="fas fa-flask"></i>
+                        Lab Timetable
+                    </a>
+                    <a href="https://courses.iiit.ac.in/course/view.php?id=5324" target="_blank" class="link-badge"
+                        style="display: flex; align-items: center; gap: 0.5rem; padding: 1rem;">
+                        <i class="fas fa-graduation-cap"></i>
+                        Courses Portal
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://serc.iiit.ac.in">Software Engineering Research Center</a>
+                <a href="https://iiit.ac.in">IIIT Hyderabad</a>
+                <a href="https://faculty.iiit.ac.in/~raghu.reddy/Home.html">Dr. Raghu Reddy</a>
+                <a href="https://karthikvaidhyanathan.com/">Dr. Karthik Vaidhyanathan</a>
+            </div>
+            <div style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1rem;">
+                Course Policy credits to Dr. Raghu Reddy & Dr. Karthik Vaidhyanathan
+            </div>
+            <div style="color: var(--text-muted); font-size: 0.875rem;">
+                Course site hosted by github.io
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Loading overlay
+        window.addEventListener('load', function () {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.style.opacity = '0';
+            setTimeout(() => {
+                loadingOverlay.style.display = 'none';
+            }, 500);
+        });
+
+        // Current time display
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleString('en-US', {
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('currentTime').textContent = timeString;
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn?.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(30, 41, 59, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(30, 41, 59, 0.8)';
+            }
+        });
+
+        // ========================================
+        // EVENT TRACKING SYSTEM
+        // ========================================
+
+        // 3. Open browser console (F12) to see tracked events
+        // 
+        // TRACKS:
+        // - Click events (all elements)
+        // - View events (elements entering viewport)
+        // - Input changes (text inputs, textareas, file uploads)
+        // - Scroll events (throttled to 200ms)
+        // - Page visibility changes (tab switching)
+        // - Page load and unload events
+        //
+        // OUTPUT FORMAT:
+        // - Timestamp: ISO 8601 format (e.g., 2025-10-03T10:30:45.123Z)
+        // - Event Type: click, view, input_change, scroll, etc.
+        // - Object Type: button, image, text, dropdown, etc.
+        // - Element Details: tag, id, class, text content
+        // - Additional Info: mouse coordinates, dimensions, etc.
+        // ========================================
+
+        /**
+         * Get element type/description for logging
+         */
+        function getElementType(element) {
+            if (!element || !element.tagName) return 'unknown';
+
+            const tag = element.tagName.toLowerCase();
+            const type = element.type || '';
+            const className = element.className || '';
+            const id = element.id || '';
+
+            // Specific element identification - CUSTOMIZE THESE FOR YOUR APP
+            if (tag === 'button') {
+                if (className.includes('btn-stop')) return 'stop_button';
+                if (className.includes('btn-go')) return 'go_button';
+                if (className.includes('btn-primary')) return 'primary_button';
+                if (className.includes('btn-secondary')) return 'secondary_button';
+                if (className.includes('upload')) return 'upload_button';
+                if (className.includes('difficulty')) return 'difficulty_button';
+                if (className.includes('start')) return 'start_button';
+                if (className.includes('shuffle')) return 'shuffle_button';
+                if (className.includes('reset')) return 'reset_button';
+                return 'button';
+            }
+
+            if (tag === 'input' && type === 'file') return 'file_input';
+            if (tag === 'input') return `input_${type || 'text'}`;
+            if (tag === 'textarea') return 'textarea';
+            if (tag === 'select') return 'dropdown';
+            if (tag === 'img') return 'image';
+            if (tag === 'a') return 'link';
+            if (tag === 'canvas') return 'canvas';
+            if (tag === 'svg' || element.ownerSVGElement) return 'svg_icon';
+            if (tag === 'table') return 'table';
+            if (tag === 'pre') return 'code_block';
+
+            // Check for specific component types by class - CUSTOMIZE THESE
+            if (className.includes('puzzle-piece')) return 'puzzle_piece';
+            if (className.includes('table-box')) return 'database_table_box';
+            if (className.includes('nash-equilibrium')) return 'nash_equilibrium_cell';
+            if (className.includes('stat-item')) return 'stat_item';
+            if (className.includes('progress-bar')) return 'progress_bar';
+
+            // Generic elements
+            if (['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tag)) return 'heading';
+            if (['p', 'span', 'label', 'div'].includes(tag)) return 'text';
+            if (tag === 'tr') return 'table_row';
+            if (tag === 'td') return 'table_cell';
+            if (tag === 'th') return 'table_header';
+
+            return tag;
+        }
+
+        /**
+         * Get detailed element information
+         */
+        function getElementInfo(element) {
+            const info = {
+                tag: element.tagName.toLowerCase(),
+                id: element.id || 'none',
+                class: element.className || 'none',
+                text: element.textContent?.trim().substring(0, 50) || 'none'
+            };
+
+            if (element.tagName.toLowerCase() === 'img') {
+                info.src = element.src || 'none';
+            }
+
+            if (element.tagName.toLowerCase() === 'a') {
+                info.href = element.href || 'none';
+            }
+
+            return info;
+        }
+
+        /**
+         * Log event to console with formatting
+         */
+        function logEvent(timestamp, eventType, elementType, element, additionalInfo = {}) {
+            const elementInfo = getElementInfo(element);
+
+            console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'color: #5FD38D');
+            console.log('%c🔍 EVENT CAPTURED', 'color: #5FD38D; font-weight: bold; font-size: 14px');
+            console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'color: #5FD38D');
+            console.log('%c⏰ Timestamp:', 'color: #4fc279; font-weight: bold', timestamp);
+            console.log('%c📌 Event Type:', 'color: #4fc279; font-weight: bold', eventType.toUpperCase());
+            console.log('%c🎯 Object Type:', 'color: #4fc279; font-weight: bold', elementType);
+            console.log('%c📋 Element Details:', 'color: #4fc279; font-weight: bold');
+            console.table(elementInfo);
+
+            if (Object.keys(additionalInfo).length > 0) {
+                console.log('%c➕ Additional Info:', 'color: #4fc279; font-weight: bold');
+                console.table(additionalInfo);
+            }
+
+            console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n', 'color: #5FD38D');
+        }
+
+        /**
+         * Track all click events
+         */
+        document.addEventListener('click', function (event) {
+            const timestamp = new Date().toISOString();
+            const element = event.target;
+            const elementType = getElementType(element);
+
+            const additionalInfo = {
+                pageX: event.pageX,
+                pageY: event.pageY,
+                clientX: event.clientX,
+                clientY: event.clientY,
+                button: event.button === 0 ? 'left' : event.button === 1 ? 'middle' : 'right'
+            };
+
+            logEvent(timestamp, 'click', elementType, element, additionalInfo);
+        }, true);
+
+        /**
+         * Track element views using Intersection Observer
+         */
+        function setupViewTracking() {
+            const trackedElements = new WeakSet();
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // Only log when element becomes visible and hasn't been tracked yet
+                    if (entry.isIntersecting && !trackedElements.has(entry.target)) {
+                        trackedElements.add(entry.target);
+
+                        const timestamp = new Date().toISOString();
+                        const element = entry.target;
+                        const elementType = getElementType(element);
+
+                        const additionalInfo = {
+                            intersectionRatio: (entry.intersectionRatio * 100).toFixed(2) + '%',
+                            boundingBox: {
+                                top: Math.round(entry.boundingClientRect.top),
+                                left: Math.round(entry.boundingClientRect.left),
+                                width: Math.round(entry.boundingClientRect.width),
+                                height: Math.round(entry.boundingClientRect.height)
+                            }
+                        };
+
+                        logEvent(timestamp, 'view', elementType, element, additionalInfo);
+                    }
+                });
+            }, {
+                threshold: [0.1, 0.5, 1.0], // Trigger at 10%, 50%, and 100% visibility
+                rootMargin: '0px'
+            });
+
+            // Observe all interactive and content elements
+            // CUSTOMIZE THIS ARRAY TO TRACK ONLY WHAT YOU NEED
+            const selectorsToTrack = [
+                'button', 'input', 'select', 'textarea', 'a',
+                'img', 'h1', 'h2', 'h3', 'table', 'canvas',
+                '.puzzle-piece', '.table-box', '.nash-equilibrium',
+                '[data-track]' // Add data-track attribute to any element you want to track
+            ];
+
+            selectorsToTrack.forEach(selector => {
+                document.querySelectorAll(selector).forEach(element => {
+                    observer.observe(element);
+                });
+            });
+
+            // Re-observe elements when DOM changes (for dynamically generated content)
+            const mutationObserver = new MutationObserver((mutations) => {
+                mutations.forEach(mutation => {
+                    mutation.addedNodes.forEach(node => {
+                        if (node.nodeType === 1) { // Element node
+                            selectorsToTrack.forEach(selector => {
+                                if (node.matches && node.matches(selector)) {
+                                    observer.observe(node);
+                                }
+                                node.querySelectorAll && node.querySelectorAll(selector).forEach(el => {
+                                    observer.observe(el);
+                                });
+                            });
+                        }
+                    });
+                });
+            });
+
+            mutationObserver.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        }
+
+        /**
+         * Track input/textarea changes
+         */
+        document.addEventListener('input', function (event) {
+            const timestamp = new Date().toISOString();
+            const element = event.target;
+            const elementType = getElementType(element);
+
+            const additionalInfo = {
+                value: element.value ? '(value changed)' : 'empty',
+                valueLength: element.value?.length || 0
+            };
+
+            logEvent(timestamp, 'input_change', elementType, element, additionalInfo);
+        }, true);
+
+        /**
+         * Track dropdown/select changes
+         */
+        document.addEventListener('change', function (event) {
+            if (event.target.tagName.toLowerCase() === 'select') {
+                const timestamp = new Date().toISOString();
+                const element = event.target;
+                const elementType = getElementType(element);
+
+                const additionalInfo = {
+                    selectedValue: element.value,
+                    selectedText: element.options[element.selectedIndex]?.text || 'none'
+                };
+
+                logEvent(timestamp, 'dropdown_change', elementType, element, additionalInfo);
+            }
+        }, true);
+
+        /**
+         * Track form submissions
+         */
+        document.addEventListener('submit', function (event) {
+            const timestamp = new Date().toISOString();
+            const element = event.target;
+
+            logEvent(timestamp, 'form_submit', 'form', element, {});
+        }, true);
+
+        /**
+         * Track scroll events (throttled to prevent console spam)
+         */
+        let scrollTimeout;
+        window.addEventListener('scroll', function () {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const timestamp = new Date().toISOString();
+                const additionalInfo = {
+                    scrollY: window.scrollY,
+                    scrollX: window.scrollX,
+                    documentHeight: document.documentElement.scrollHeight,
+                    viewportHeight: window.innerHeight,
+                    scrollPercentage: ((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100).toFixed(2) + '%'
+                };
+
+                console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'color: #6366f1');
+                console.log('%c📜 SCROLL EVENT', 'color: #6366f1; font-weight: bold; font-size: 14px');
+                console.log('%c⏰ Timestamp:', 'color: #818cf8; font-weight: bold', timestamp);
+                console.log('%c📊 Scroll Info:', 'color: #818cf8; font-weight: bold');
+                console.table(additionalInfo);
+                console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n', 'color: #6366f1');
+            }, 200); // Throttle to every 200ms
+        });
+
+        /**
+         * Track page load
+         */
+        window.addEventListener('load', function () {
+            const timestamp = new Date().toISOString();
+            console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'color: #5FD38D');
+            console.log('%c🎉 PAGE LOADED - Event Tracking Active', 'color: #5FD38D; font-weight: bold; font-size: 16px');
+            console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'color: #5FD38D');
+            console.log('%c⏰ Timestamp:', 'color: #4fc279; font-weight: bold', timestamp);
+            console.log('%c📄 Page:', 'color: #4fc279; font-weight: bold', document.title);
+            console.log('%c📍 URL:', 'color: #4fc279; font-weight: bold', window.location.href);
+            console.log('%c🖥️ Browser:', 'color: #4fc279; font-weight: bold', navigator.userAgent.substring(0, 100));
+            console.log('%c📱 Screen:', 'color: #4fc279; font-weight: bold', `${window.screen.width}x${window.screen.height}`);
+            console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n', 'color: #5FD38D');
+
+            // Start view tracking after page load
+            setupViewTracking();
+        });
+
+        /**
+         * Track page visibility changes (tab switching)
+         */
+        document.addEventListener('visibilitychange', function () {
+            const timestamp = new Date().toISOString();
+            const state = document.hidden ? 'hidden' : 'visible';
+
+            console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'color: #f59e0b');
+            console.log('%c👁️ PAGE VISIBILITY CHANGED', 'color: #f59e0b; font-weight: bold; font-size: 14px');
+            console.log('%c⏰ Timestamp:', 'color: #fbbf24; font-weight: bold', timestamp);
+            console.log('%c📌 State:', 'color: #fbbf24; font-weight: bold', state);
+            console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n', 'color: #f59e0b');
+        });
+
+        /**
+         * Track page unload
+         */
+        window.addEventListener('beforeunload', function () {
+            const timestamp = new Date().toISOString();
+            console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━', 'color: #ef4444');
+            console.log('%c👋 PAGE UNLOAD', 'color: #ef4444; font-weight: bold; font-size: 16px');
+            console.log('%c⏰ Timestamp:', 'color: #ef4444; font-weight: bold', timestamp);
+            console.log('%c━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n', 'color: #ef4444');
+        });
+
+        // ========================================
+        // END OF EVENT TRACKING SYSTEM
+        // ========================================
+
+    </script>
+</body>
+
+</html>
